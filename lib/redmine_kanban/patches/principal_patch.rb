@@ -1,3 +1,4 @@
+require_dependency  'principal'
 module RedmineKanban
   module Patches
     module PrincipalPatch
@@ -12,7 +13,7 @@ module RedmineKanban
             has_many :issue_assignments, :class_name => 'Issue', :foreign_key => 'assigned_to_id'
           end
 
-          named_scope :with_issue_assigned, lambda {
+          scope :with_issue_assigned, lambda {
             {
               :include => :issue_assignments,
               :conditions => "#{Issue.table_name}.assigned_to_id IS NOT NULL"

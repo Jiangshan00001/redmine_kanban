@@ -19,7 +19,7 @@ module RedmineKanban
               :conditions => Project.allowed_to_condition(args.first || User.current, :view_issues) } }
         end
 
-        named_scope :due_between, lambda {|a, b|
+        scope :due_between, lambda {|a, b|
           {
             :conditions => ["#{Issue.table_name}.due_date > :start and #{Issue.table_name}.due_date <= :end",
                             {
@@ -29,20 +29,20 @@ module RedmineKanban
           }
         }
 
-        named_scope :due_sooner_than, lambda {|a|
+        scope :due_sooner_than, lambda {|a|
           {
             :conditions => ["#{Issue.table_name}.due_date < ?", a]
           }
 
         }
 
-        named_scope :assigned_to, lambda {|user|
+        scope :assigned_to, lambda {|user|
           {
             :conditions => ["#{Issue.table_name}.assigned_to_id = (?)", user.id]
           }
         }
 
-        named_scope :created_by, lambda {|user|
+        scope :created_by, lambda {|user|
           {
             :conditions => ["#{Issue.table_name}.author_id = (?)", user.id]
           }
