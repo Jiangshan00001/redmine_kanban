@@ -1,4 +1,4 @@
-support for redmine 3.x
+support for redmine 3.x(not finished yet)
 
 how to install
 1 copy to plugins
